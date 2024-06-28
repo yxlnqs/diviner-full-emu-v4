@@ -860,8 +860,6 @@ module pcileech_bar_impl_ar9287_wifi(
 									rd_rsp_data[15:8]  <= ((0 + (number + 12) % (15 + 1 - 0)) << 4) | (0 + (number + 15) % (15 + 1 - 0));
 									rd_rsp_data[31:16] <= 16'h0000;
 									end
-//                16'h00000 : rd_rsp_data <= 32'hFEE0100C;
-//                16'h00008 : rd_rsp_data <= 32'h00004973;
                 16'h0010 : rd_rsp_data <= 32'hFEE0400C;
                 16'h0018 : rd_rsp_data <= 32'h000049A3;
                 16'h0020 : rd_rsp_data <= 32'hFEE0100C;
@@ -931,7 +929,9 @@ module pcileech_bar_impl_ar9287_wifi(
                 16'h417C : rd_rsp_data <= 32'h00000001;
                 16'h418C : rd_rsp_data <= 32'h00000001;
 		default : rd_rsp_data <= 32'h00000000;
-				            endcase
+                    endcase
+                end
+            endcase
         end else if (dwr_valid) begin
              case (({dwr_addr[31:24], dwr_addr[23:16], dwr_addr[15:08], dwr_addr[07:00]} - (base_address_register & ~32'h4)) & 32'h00FF) //
             endcase
